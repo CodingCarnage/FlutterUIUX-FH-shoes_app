@@ -12,21 +12,21 @@ class CustomAppBar extends StatelessWidget {
       bottom: false,
       child: Container(
         width: double.infinity,
-        height: 125,
-        padding: const EdgeInsets.symmetric(horizontal: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0),
+        margin: const EdgeInsets.only(top: 27.5),
         child: Row(
           children: <Widget>[
             Text(
               this.text,
               style: TextStyle(
-                fontSize: 30,
+                fontSize: 30.0,
                 fontWeight: FontWeight.w700,
               ),
             ),
             const Spacer(),
             Icon(
               Icons.search,
-              size: 30,
+              size: 30.0,
             ),
           ],
         ),
