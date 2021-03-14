@@ -136,8 +136,8 @@ class _ShoeSizeSelection extends StatelessWidget {
         height: 62.5,
         alignment: Alignment.center,
         child: ListView.builder(
-          shrinkWrap: true,
           scrollDirection: Axis.horizontal,
+          shrinkWrap: (shoeSizes.length <= 5) ? true : false,
           physics: BouncingScrollPhysics(),
           itemCount: shoeSizes.length,
           itemBuilder: (context, index) {
