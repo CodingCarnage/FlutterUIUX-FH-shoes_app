@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ShoeModel with ChangeNotifier {
+  List<double> _shoeSizes;
+
+  List<double> get shoeSizes => this._shoeSizes;
+
+  set shoeSizes(List<double> shoeSizes) {
+    this._shoeSizes = shoeSizes;
+  }
+  
   String _assetsImage = 'assets/images/azul.png';
 
   String get assetsImage => this._assetsImage;
@@ -10,12 +18,12 @@ class ShoeModel with ChangeNotifier {
     notifyListeners();
   }
 
-  double _shoeSize = 8.5;
+  double _shoeSizeSelected;
 
-  double get shoeSize => this._shoeSize;
+  double get shoeSizeSelected => this._shoeSizeSelected;
 
-  set shoeSize(double shoeSize) {
-    this._shoeSize = shoeSize;
+  set shoeSizeSelected(double shoeSizeSelected) {
+    this._shoeSizeSelected = shoeSizeSelected;
     notifyListeners();
   }
 }
