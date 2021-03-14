@@ -12,7 +12,21 @@ class ShoePage extends StatelessWidget {
         children: <Widget>[
           CustomAppBar(text: 'For you'),
           const SizedBox(height: 20.0),
-          ShoeSizePreview(),
+          Expanded(
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Column(
+                children: <Widget>[
+                  ShoeSizePreview(),
+                  ShoeDescription(
+                    title: 'Nike Air Max 720',
+                    description:
+                        'The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so. The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so. The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so. The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so.',
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
