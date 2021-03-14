@@ -132,21 +132,20 @@ class _ShoeSizeSelection extends StatelessWidget {
         ),
       );
     } else {
-      return SizedBox(
+      return Container(
         height: 62.5,
-        child: Center(
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
-            itemCount: shoeSizes.length,
-            itemBuilder: (context, index) {
-              return _ShoeSizeButton(
-                shoeSizes[index],
-                index: index,
-              );
-            },
-          ),
+        alignment: Alignment.center,
+        child: ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          physics: BouncingScrollPhysics(),
+          itemCount: shoeSizes.length,
+          itemBuilder: (context, index) {
+            return _ShoeSizeButton(
+              shoeSizes[index],
+              index: index,
+            );
+          },
         ),
       );
     }
