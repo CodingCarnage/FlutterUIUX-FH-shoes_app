@@ -49,6 +49,7 @@ class _ShoeSizePreviewForeground extends StatelessWidget {
     return Column(
       children: <Widget>[
         _Shoe(),
+        Spacer(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: _ShoeSizeSelection(),
@@ -86,11 +87,13 @@ class _ShoeShadow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    
     return Transform.rotate(
       angle: -0.5,
       child: Container(
-        width: 230.0,
-        height: 120.0,
+        width: 230,
+        height: 120,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100.0),
           boxShadow: [
@@ -133,7 +136,8 @@ class _ShoeSizeSelection extends StatelessWidget {
       );
     } else {
       return Container(
-        height: 62.5,
+        height: 42.5,
+        margin: const EdgeInsets.only(bottom: 20.0),
         alignment: Alignment.center,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -141,9 +145,12 @@ class _ShoeSizeSelection extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           itemCount: shoeSizes.length,
           itemBuilder: (context, index) {
-            return _ShoeSizeButton(
-              shoeSizes[index],
-              index: index,
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 7.5),
+              child: _ShoeSizeButton(
+                shoeSizes[index],
+                index: index,
+              ),
             );
           },
         ),
@@ -172,7 +179,6 @@ class _ShoeSizeButton extends StatelessWidget {
         shoeModel.shoeSizeSelected = this.shoeSize;
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 7.5, vertical: 10.0),
         alignment: Alignment.center,
         child: Text(
           '${shoeSize.toString().replaceAll('.0', '')}',
