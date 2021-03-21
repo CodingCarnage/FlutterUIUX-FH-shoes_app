@@ -8,14 +8,18 @@ class ShoeSizePreview extends StatelessWidget {
   const ShoeSizePreview({
     Key key,
     @required this.shoeSizes,
+    this.fullScreen = false,
   }) : super(key: key);
 
   final List<double> shoeSizes;
+  final bool fullScreen;
 
   @override
   Widget build(BuildContext context) {
     final ShoeModel shoeModel = Provider.of<ShoeModel>(context);
     shoeModel.shoeSizes = this.shoeSizes;
+    shoeModel.fullScreen = this.fullScreen;
+
     return _ShoeSizePreviewBackground();
   }
 }
@@ -25,15 +29,25 @@ class _ShoeSizePreviewBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool fullScreen = Provider.of<ShoeModel>(context).fullScreen;
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: (fullScreen) ? 5.0 : 30.0,
+        vertical: (fullScreen) ? 0.0 : 5.0,
+      ),
       child: Container(
         width: double.infinity,
-        height: 430.0,
+        height: (fullScreen) ? 415.0 : 430.0,
         decoration: BoxDecoration(
           //* Change to main color.
           color: Color(0xffFFD54F),
-          borderRadius: BorderRadius.circular(50.0),
+          borderRadius: (!fullScreen)
+              ? BorderRadius.circular(50.0)
+              : BorderRadius.only(
+                  bottomLeft: Radius.circular(50.0),
+                  bottomRight: Radius.circular(50.0),
+                ),
         ),
         child: _ShoeSizePreviewForeground(),
       ),
@@ -46,14 +60,18 @@ class _ShoeSizePreviewForeground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool fullScreen = Provider.of<ShoeModel>(context).fullScreen;
+
     return Column(
       children: <Widget>[
         _Shoe(),
-        Spacer(),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: _ShoeSizeSelection(),
-        ),
+        if (!fullScreen) 
+          Spacer(),
+        if (!fullScreen)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: _ShoeSizeSelection(),
+          ),
       ],
     );
   }
