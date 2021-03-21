@@ -7,7 +7,7 @@ import 'package:shoes_app/src/models/shoe_model.dart';
 class ShoeSizePreview extends StatelessWidget {
   const ShoeSizePreview({
     Key key,
-    @required this.shoeSizes,
+    this.shoeSizes,
     this.fullScreen = false,
   }) : super(key: key);
 
