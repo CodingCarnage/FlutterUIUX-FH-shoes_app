@@ -31,6 +31,7 @@ class AddToCartButton extends StatelessWidget {
             const Spacer(),
             CustomButton(
               text: 'Add to cart',
+              color: Colors.orangeAccent,
             ),
             const SizedBox(width: 20.0),
           ],
