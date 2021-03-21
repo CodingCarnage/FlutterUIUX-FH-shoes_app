@@ -8,6 +8,14 @@ class ShoeModel with ChangeNotifier {
   set shoeSizes(List<double> shoeSizes) {
     this._shoeSizes = shoeSizes;
   }
+
+  bool _fullScreen;
+
+  bool get fullScreen => this._fullScreen;
+
+  set fullScreen(bool fullScreen) {
+    this._fullScreen = fullScreen;
+  }
   
   String _assetsImage = 'assets/images/azul.png';
 
