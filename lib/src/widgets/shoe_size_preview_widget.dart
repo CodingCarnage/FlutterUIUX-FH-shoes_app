@@ -87,8 +87,6 @@ class _ShoeShadow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
-    
     return Transform.rotate(
       angle: -0.5,
       child: Container(
