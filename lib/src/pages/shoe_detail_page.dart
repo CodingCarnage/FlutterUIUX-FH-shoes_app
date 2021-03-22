@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:provider/provider.dart';
 
+import 'package:shoes_app/src/helpers/helpers.dart';
+
 import 'package:shoes_app/src/models/shoe_model.dart';
 
 import 'package:shoes_app/src/widgets/custom_widgets.dart';
@@ -12,6 +14,8 @@ class ShoeDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    changeStatusBarLight();
+    
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -27,7 +31,10 @@ class ShoeDetailPage extends StatelessWidget {
                 top: 40,
                 left: 15,
                 child: FloatingActionButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    changeStatusBarDark();
+                    Navigator.pop(context);
+                  },  
                   child: Icon(
                     Icons.chevron_left,
                     color: Colors.white,
