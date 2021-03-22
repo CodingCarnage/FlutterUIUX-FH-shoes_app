@@ -20,7 +20,6 @@ class ShoeSizePreview extends StatelessWidget {
   Widget build(BuildContext context) {
     final ShoeModel shoeModel = Provider.of<ShoeModel>(context);
     shoeModel.shoeSizes = this.shoeSizes;
-    shoeModel.fullScreen = this.fullScreen;
 
     return GestureDetector(
       onTap: () {
@@ -33,18 +32,21 @@ class ShoeSizePreview extends StatelessWidget {
           );
         }
       },
-      child: _ShoeSizePreviewBackground(),
+      child: _ShoeSizePreviewBackground(fullScreen: this.fullScreen),
     );
   }
 }
 
 class _ShoeSizePreviewBackground extends StatelessWidget {
-  const _ShoeSizePreviewBackground({Key key}) : super(key: key);
+  const _ShoeSizePreviewBackground({
+    Key key,
+    @required this.fullScreen,
+  }) : super(key: key);
+
+  final bool fullScreen;
 
   @override
   Widget build(BuildContext context) {
-    final bool fullScreen = Provider.of<ShoeModel>(context).fullScreen;
-
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: (fullScreen) ? 5.0 : 30.0,
@@ -63,19 +65,22 @@ class _ShoeSizePreviewBackground extends StatelessWidget {
                   bottomRight: Radius.circular(50.0),
                 ),
         ),
-        child: _ShoeSizePreviewForeground(),
+        child: _ShoeSizePreviewForeground(fullScreen: this.fullScreen),
       ),
     );
   }
 }
 
 class _ShoeSizePreviewForeground extends StatelessWidget {
-  const _ShoeSizePreviewForeground({Key key}) : super(key: key);
+  const _ShoeSizePreviewForeground({
+    Key key,
+    @required this.fullScreen,
+  }) : super(key: key);
+
+  final bool fullScreen;
 
   @override
   Widget build(BuildContext context) {
-    final bool fullScreen = Provider.of<ShoeModel>(context).fullScreen;
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -142,6 +147,7 @@ class _ShoeSizeSelection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<double> shoeSizes = Provider.of<ShoeModel>(context).shoeSizes;
+
     if (shoeSizes.isEmpty) {
       return Container(
         height: 62.5,
