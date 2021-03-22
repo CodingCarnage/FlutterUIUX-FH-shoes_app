@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:animate_do/animate_do.dart';
+
 import 'package:shoes_app/src/widgets/custom_widgets.dart';
 
 class ShoeDetailPage extends StatelessWidget {
@@ -12,14 +14,17 @@ class ShoeDetailPage extends StatelessWidget {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              ShoeSizePreview(
-                fullScreen: true,
+              Hero(
+                tag: 'ShoeSizePreviewHero',
+                child: ShoeSizePreview(
+                  fullScreen: true,
+                ),
               ),
               Positioned(
                 top: 40,
                 left: 15,
                 child: FloatingActionButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.pop(context),
                   child: Icon(
                     Icons.chevron_left,
                     color: Colors.white,
@@ -40,7 +45,7 @@ class ShoeDetailPage extends StatelessWidget {
                   ShoeDescription(
                     title: 'Nike Air Max 720',
                     description:
-                        'The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so. The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so. The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so. The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so.',
+                        'The Nike Air Max 720 goes bigger than ever before with Nike\'s taller Air unit yet, offering more air underfoot for unimaginable, all-day comfort. Has Air Max gone too far? We hope so.',
                   ),
                   _AmountBuyNow(),
                   _ColorSelectionAndMore(),
@@ -142,10 +147,10 @@ class _ColorSelectionAndMore extends StatelessWidget {
             Expanded(
               child: Stack(
                 children: <Widget>[
-                  Positioned(left: 90, child: _ShoeColor(color: Color(0xffC6D642))),
-                  Positioned(left: 60, child: _ShoeColor(color: Color(0xffFFAD29))),
-                  Positioned(left: 30, child: _ShoeColor(color: Color(0xff2099F1))),
-                  _ShoeColor(color: Color(0xff364D56)),
+                  Positioned(left: 90, child: _ShoeColor(4, color: Color(0xffC6D642))),
+                  Positioned(left: 60, child: _ShoeColor(3, color: Color(0xffFFAD29))),
+                  Positioned(left: 30, child: _ShoeColor(2, color: Color(0xff2099F1))),
+                  _ShoeColor(1, color: Color(0xff364D56)),
                 ],
               ),
             ),
@@ -163,21 +168,27 @@ class _ColorSelectionAndMore extends StatelessWidget {
 }
 
 class _ShoeColor extends StatelessWidget {
-  const _ShoeColor({
+  const _ShoeColor(
+    this.index, {
     Key key,
     @required this.color,
   }) : super(key: key);
 
   final Color color;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 45.0,
-      height: 45.0,
-      decoration: BoxDecoration(
-        color: this.color,
-        shape: BoxShape.circle,
+    return FadeInLeft(
+      delay: Duration(milliseconds: this.index * 100),
+      duration: Duration(milliseconds: 300),
+      child: Container(
+        width: 45.0,
+        height: 45.0,
+        decoration: BoxDecoration(
+          color: this.color,
+          shape: BoxShape.circle,
+        ),
       ),
     );
   }
@@ -204,13 +215,16 @@ class _AmountBuyNow extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            CustomButton(
-              text: 'Buy Now',
-              width: 120.0,
-              height: 40.0,
-              color: Colors.deepOrangeAccent,
+            Bounce(
+              delay: Duration(milliseconds: 500),
+              from: 8,
+              child: CustomButton(
+                text: 'Buy Now',
+                width: 120.0,
+                height: 40.0,
+                color: Colors.deepOrangeAccent,
+              ),
             ),
-            const SizedBox(height: 10.0),
           ],
         ),
       ),
