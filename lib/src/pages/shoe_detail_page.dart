@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:animate_do/animate_do.dart';
+import 'package:provider/provider.dart';
+
+import 'package:shoes_app/src/models/shoe_model.dart';
 
 import 'package:shoes_app/src/widgets/custom_widgets.dart';
 
@@ -147,10 +150,35 @@ class _ColorSelectionAndMore extends StatelessWidget {
             Expanded(
               child: Stack(
                 children: <Widget>[
-                  Positioned(left: 90, child: _ShoeColor(4, color: Color(0xffC6D642))),
-                  Positioned(left: 60, child: _ShoeColor(3, color: Color(0xffFFAD29))),
-                  Positioned(left: 30, child: _ShoeColor(2, color: Color(0xff2099F1))),
-                  _ShoeColor(1, color: Color(0xff364D56)),
+                  Positioned(
+                    left: 90,
+                    child: _ShoeColor(
+                      4,
+                      color: Color(0xffC6D642),
+                      assetImage: 'assets/images/verde.png',
+                    ),
+                  ),
+                  Positioned(
+                    left: 60,
+                    child: _ShoeColor(
+                      3,
+                      color: Color(0xffFFAD29),
+                      assetImage: 'assets/images/amarillo.png',
+                    ),
+                  ),
+                  Positioned(
+                    left: 30,
+                    child: _ShoeColor(
+                      2,
+                      color: Color(0xff2099F1),
+                      assetImage: 'assets/images/azul.png',
+                    ),
+                  ),
+                  _ShoeColor(
+                    1,
+                    color: Color(0xff364D56),
+                    assetImage: 'assets/images/negro.png',
+                  ),
                 ],
               ),
             ),
@@ -172,22 +200,30 @@ class _ShoeColor extends StatelessWidget {
     this.index, {
     Key key,
     @required this.color,
+    @required this.assetImage,
   }) : super(key: key);
 
   final Color color;
   final int index;
+  final String assetImage;
 
   @override
   Widget build(BuildContext context) {
     return FadeInLeft(
       delay: Duration(milliseconds: this.index * 100),
       duration: Duration(milliseconds: 300),
-      child: Container(
-        width: 45.0,
-        height: 45.0,
-        decoration: BoxDecoration(
-          color: this.color,
-          shape: BoxShape.circle,
+      child: GestureDetector(
+        onTap: () {
+          final ShoeModel shoeModel = Provider.of<ShoeModel>(context, listen: false);
+          shoeModel.assetImage = this.assetImage;
+        },
+        child: Container(
+          width: 45.0,
+          height: 45.0,
+          decoration: BoxDecoration(
+            color: this.color,
+            shape: BoxShape.circle,
+          ),
         ),
       ),
     );
