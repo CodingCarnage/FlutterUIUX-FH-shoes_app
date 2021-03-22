@@ -77,14 +77,11 @@ class _ShoeSizePreviewForeground extends StatelessWidget {
     final bool fullScreen = Provider.of<ShoeModel>(context).fullScreen;
 
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         _Shoe(),
-        if (!fullScreen) Spacer(),
         if (!fullScreen)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: _ShoeSizeSelection(),
-          ),
+          _ShoeSizeSelection(),
       ],
     );
   }
@@ -167,8 +164,9 @@ class _ShoeSizeSelection extends StatelessWidget {
       );
     } else {
       return Container(
-        height: 42.5,
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         margin: const EdgeInsets.only(bottom: 20.0),
+        height: 42.5,
         alignment: Alignment.center,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
