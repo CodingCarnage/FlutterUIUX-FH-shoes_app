@@ -10,9 +10,27 @@ class ShoeDetailPage extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          ShoeSizePreview(
-            shoeSizes: [7, 7.5, 8, 8.5, 9, 9.5, 10],
-            fullScreen: true,
+          Stack(
+            children: <Widget>[
+              ShoeSizePreview(
+                fullScreen: true,
+              ),
+              Positioned(
+                top: 40,
+                left: 15,
+                child: FloatingActionButton(
+                  onPressed: () {},
+                  child: Icon(
+                    Icons.chevron_left,
+                    color: Colors.white,
+                    size: 60,
+                  ),
+                  elevation: 0,
+                  highlightElevation: 0,
+                  backgroundColor: Colors.transparent,
+                ),
+              ),
+            ],
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -26,12 +44,83 @@ class ShoeDetailPage extends StatelessWidget {
                   ),
                   _AmountBuyNow(),
                   _ColorSelectionAndMore(),
+                  _ButtonsLikeCartSettings(),
                 ],
               ),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ButtonsLikeCartSettings extends StatelessWidget {
+  const _ButtonsLikeCartSettings({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20.0, top: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          _ShadedButton(
+            icon: Icon(
+              Icons.favorite,
+              color: Colors.red,
+              size: 25,
+            ),
+          ),
+          _ShadedButton(
+            icon: Icon(
+              Icons.add_shopping_cart,
+              color: Colors.grey.withOpacity(0.4),
+              size: 25,
+            ),
+          ),
+          _ShadedButton(
+            icon: Icon(
+              Icons.settings,
+              color: Colors.grey.withOpacity(0.4),
+              size: 25,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ShadedButton extends StatelessWidget {
+  const _ShadedButton({
+    Key key,
+    this.icon,
+  }) : super(key: key);
+
+  final Icon icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 55,
+      height: 55,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        shape: BoxShape.circle,
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: Colors.black12,
+            spreadRadius: -5,
+            blurRadius: 20,
+            offset: Offset(0, 10),
+          ),
+        ],
+      ),
+      child: this.icon,
     );
   }
 }
