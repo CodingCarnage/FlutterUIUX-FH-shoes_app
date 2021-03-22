@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 
 import 'package:shoes_app/src/models/shoe_model.dart';
 
+import 'package:shoes_app/src/pages/shoe_detail_page.dart';
+
 class ShoeSizePreview extends StatelessWidget {
   const ShoeSizePreview({
     Key key,
@@ -20,7 +22,19 @@ class ShoeSizePreview extends StatelessWidget {
     shoeModel.shoeSizes = this.shoeSizes;
     shoeModel.fullScreen = this.fullScreen;
 
-    return _ShoeSizePreviewBackground();
+    return GestureDetector(
+      onTap: () {
+        if (!this.fullScreen) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => ShoeDetailPage(),
+            ),
+          );
+        }
+      },
+      child: _ShoeSizePreviewBackground(),
+    );
   }
 }
 
@@ -65,8 +79,7 @@ class _ShoeSizePreviewForeground extends StatelessWidget {
     return Column(
       children: <Widget>[
         _Shoe(),
-        if (!fullScreen) 
-          Spacer(),
+        if (!fullScreen) Spacer(),
         if (!fullScreen)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
