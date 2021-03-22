@@ -17,12 +17,12 @@ class ShoeModel with ChangeNotifier {
     this._fullScreen = fullScreen;
   }
   
-  String _assetsImage = 'assets/images/azul.png';
+  String _assetImage = 'assets/images/azul.png';
 
-  String get assetsImage => this._assetsImage;
+  String get assetImage => this._assetImage;
 
-  set assetsImage(String assetsImage) {
-    this._assetsImage = assetsImage;
+  set assetImage(String assetImage) {
+    this._assetImage = assetImage;
     notifyListeners();
   }
 
