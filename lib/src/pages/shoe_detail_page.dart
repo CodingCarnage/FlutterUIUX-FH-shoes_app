@@ -15,7 +15,7 @@ class ShoeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     changeStatusBarLight();
-    
+
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -23,8 +23,10 @@ class ShoeDetailPage extends StatelessWidget {
             children: <Widget>[
               Hero(
                 tag: 'ShoeSizePreviewHero',
-                child: ShoeSizePreview(
-                  fullScreen: true,
+                child: Material(
+                  child: ShoeSizePreview(
+                    fullScreen: true,
+                  ),
                 ),
               ),
               Positioned(
@@ -34,7 +36,7 @@ class ShoeDetailPage extends StatelessWidget {
                   onPressed: () {
                     changeStatusBarDark();
                     Navigator.pop(context);
-                  },  
+                  },
                   child: Icon(
                     Icons.chevron_left,
                     color: Colors.white,

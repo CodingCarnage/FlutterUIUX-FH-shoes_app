@@ -81,14 +81,14 @@ class _ShoeSizePreviewForeground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        _Shoe(),
-        if (!fullScreen)
-          _ShoeSizeSelection(),
-      ],
-    );
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          _Shoe(),
+          if (!fullScreen)
+            Flexible(child: _ShoeSizeSelection()),
+        ],
+      );
   }
 }
 
@@ -169,25 +169,27 @@ class _ShoeSizeSelection extends StatelessWidget {
         ),
       );
     } else {
-      return Container(
+      return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        margin: const EdgeInsets.only(bottom: 20.0),
-        height: 42.5,
-        alignment: Alignment.center,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: (shoeSizes.length <= 5) ? true : false,
-          physics: BouncingScrollPhysics(),
-          itemCount: shoeSizes.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 7.5),
-              child: _ShoeSizeButton(
-                shoeSizes[index],
-                index: index,
-              ),
-            );
-          },
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 20.0),
+          height: 42.5,
+          alignment: Alignment.center,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: (shoeSizes.length <= 5 ) ? true : false,
+            physics: BouncingScrollPhysics(),
+            itemCount: shoeSizes.length,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 7.5),
+                child: _ShoeSizeButton(
+                  shoeSizes[index],
+                  index: index,
+                ),
+              );
+            },
+          ),
         ),
       );
     }

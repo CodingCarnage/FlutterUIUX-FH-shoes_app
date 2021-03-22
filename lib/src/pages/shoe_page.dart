@@ -22,8 +22,10 @@ class ShoePage extends StatelessWidget {
                 children: <Widget>[
                   Hero(
                     tag: 'ShoeSizePreviewHero',
-                    child: ShoeSizePreview(
-                      shoeSizes: [7, 7.5, 8, 8.5, 9, 9.5, 10],
+                    child: Material(
+                      child: ShoeSizePreview(
+                        shoeSizes: [7, 7.5, 8, 8.5, 9, 9.5, 10],
+                      ),
                     ),
                   ),
                   ShoeDescription(
