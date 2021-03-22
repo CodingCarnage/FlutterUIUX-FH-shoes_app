@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:shoes_app/src/models/shoe_model.dart';
 
 import 'package:shoes_app/src/pages/shoe_page.dart';
-import 'package:shoes_app/src/pages/shoe_detail_page.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Shoes App',
       debugShowCheckedModeBanner: false,
-      home: ShoeDetailPage(),
+      home: ShoePage(),
     );
   }
 }
